@@ -16,7 +16,7 @@ public class Main {
             if(target<arr[mid])
                 end= mid-1;
             else if(target>arr[mid])
-                start=start+1;
+                start=mid+1;
             else
                 return mid;
         }
