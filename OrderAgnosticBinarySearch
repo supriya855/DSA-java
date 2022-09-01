@@ -1,3 +1,6 @@
+//Order-Agnostic Binary Search is a modified version of Binary Search algorithm.
+//Here in this modified binary search comes with one more condition checking.
+//The intuition behind this algorithm is what if the order of the sorted array is not given
 public class OrderAgnosticBS {
     public static void main(String[] args) {
         //int[] arr = {1, 2, 3, 4, 5, 6, 7, 9, 12, 34, 45, 67};
