@@ -1,15 +1,16 @@
-import java.util.Arrays;
-
 class Solution {
     public int maxIceCream(int[] costs, int coins) {
         Arrays.sort(costs);
-        int numIceCream = 0;
-        for (int cost : costs) {
-            if (cost <= coins) {
-                numIceCream++;
-                coins -= cost;
+        int count=0;
+        for(int i=0;i<costs.length;i++){
+            if(costs[i]<=coins){
+                 count++;
+                 coins-=costs[i];
             }
+                //System.out.println(count);
+            
         }
-        return numIceCream;
+        return count;
+        
     }
 }
