@@ -1,27 +1,35 @@
 class MyStack {
-Stack<Integer> s= new Stack<>();
+Queue<Integer> q= new LinkedList<Integer>();// This is using single Queue
     public MyStack() {
         
     }
     
     public void push(int x) {
-        s.add(x);
-        
+        q.add(x);//we are adding a value to the queue
+        int size=q.size();// finding the size of it
+        while(size>1){// if size>1 
+            q.add(q.remove());// we are adding into the the queue by removing first inserted element we are placing in the last
+            size--;// for that decrement the size of array do this process until size<1
+        }
+        /* [1,2,3] --> 
+        step-1 : removing 1 
+        step-2 : Adding at the end of queue i.e is [ 2,3,1]
+        [3,1,2]
+        step-3: reduce the size*/
     }
     
     public int pop() {
-        return s.pop();
+       int top= q.remove();
+        return top;
         
     }
     
     public int top() {
-        return s.peek();
-        
+        return q.peek();
     }
     
     public boolean empty() {
-        return s.isEmpty();
-        
+        return q.isEmpty();
     }
 }
 
