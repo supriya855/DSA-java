@@ -13,27 +13,24 @@
  *     }
  * }
  */
+//Inorder traversal and traverse through it
 class Solution {
-    List<Integer> list= new ArrayList<>();
-    int c=0;
-   // List<Integer> dummy = new ArrayList<>();
     public boolean isValidBST(TreeNode root) {
-        inorder(root);
-       for(int i=0;i<list.size()-1;i++){
-           if(list.get(i)<list.get(i+1)){
-               c++;
-           }
-           else
-               return false;
-       }
-        return true;
+        List<Integer> list= new ArrayList<>();
+        int c=0;
+        inorder(root ,list);
+        for(int i=0;i<list.size()-1;i++){
+            if(list.get(i)<list.get(i+1)){
+                c++;
+            }
+        }
+        return c==list.size()-1;
     }
-    public void inorder(TreeNode root){
-        if(root==null) return;
+    public void inorder(TreeNode root, List<Integer> list){
         if(root!=null){
-            inorder(root.left);
+            inorder(root.left,list);
             list.add(root.val);
-            inorder(root.right);
+            inorder(root.right,list);
         }
     }
 }
