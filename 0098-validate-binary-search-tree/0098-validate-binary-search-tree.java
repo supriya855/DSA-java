@@ -13,22 +13,13 @@
  *     }
  * }
  */
-//Inorder traversal and traverse through it
 class Solution {
     public boolean isValidBST(TreeNode root) {
-       Stack<TreeNode> st= new Stack<>();
-        TreeNode pre=null;
+        return isValid(root,Long.MIN_VALUE,Long.MAX_VALUE);
+    }
+    private boolean isValid(TreeNode root,long minVal,long maxVal){
         if(root==null) return true;
-        while(root!=null||!st.isEmpty()){
-            while(root!=null){
-                st.push(root);
-                root=root.left;
-            }
-            root=st.pop();
-            if(pre!=null&&root.val<=pre.val) return false;// storing every prev root val in pre and checking BST condition
-            pre=root;
-            root=root.right;
-        }
-        return true;
+        if(root.val>=maxVal||root.val<=minVal) return false;
+        return isValid(root.left,minVal,root.val)&&isValid(root.right,root.val,maxVal);
     }
 }
