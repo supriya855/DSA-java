@@ -16,21 +16,19 @@
 //Inorder traversal and traverse through it
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        List<Integer> list= new ArrayList<>();
-        int c=0;
-        inorder(root ,list);
-        for(int i=0;i<list.size()-1;i++){
-            if(list.get(i)<list.get(i+1)){
-                c++;
+       Stack<TreeNode> st= new Stack<>();
+        TreeNode pre=null;
+        if(root==null) return true;
+        while(root!=null||!st.isEmpty()){
+            while(root!=null){
+                st.push(root);
+                root=root.left;
             }
+            root=st.pop();
+            if(pre!=null&&root.val<=pre.val) return false;// storing every prev root val in pre and checking BST condition
+            pre=root;
+            root=root.right;
         }
-        return c==list.size()-1;
-    }
-    public void inorder(TreeNode root, List<Integer> list){
-        if(root!=null){
-            inorder(root.left,list);
-            list.add(root.val);
-            inorder(root.right,list);
-        }
+        return true;
     }
 }
