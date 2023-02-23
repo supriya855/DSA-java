@@ -15,14 +15,19 @@
  */
 class Solution {
     public boolean findTarget(TreeNode root, int k) {
-        ArrayList<Integer> l=new ArrayList<>();
+       
+       ArrayList<Integer> l=new ArrayList<>();
         inorder(root,l);
-        for(int i=0;i<l.size();i++){
-            for(int j=i+1;j<l.size();j++){
-            if(l.get(i)+l.get(j)==k){
+        int s=0;
+        int e=l.size()-1;
+        while(s<e){
+            if(l.get(s)+l.get(e)==k){
                 return true;
-             }
             }
+            if(l.get(s)+l.get(e)<k) s++;
+            else e--;
+            
+            
         }
         return false;
     }
