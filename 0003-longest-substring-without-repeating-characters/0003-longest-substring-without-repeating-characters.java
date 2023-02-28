@@ -1,14 +1,16 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-       HashMap<Character,Integer> map= new HashMap<>();
-        int max=0;
-        for(int i=0,j=0;i<s.length();i++){
-            if(map.containsKey(s.charAt(i))){
-                j=Math.max(j,map.get(s.charAt(i))+1);
+      HashSet<Character> set = new HashSet<>();
+      int i=0,j=0,max=0;//slower pointer,fast pointer, result val
+        while(j<s.length()){
+            if(!set.contains(s.charAt(j))){
+                set.add(s.charAt(j++));
+                max=Math.max(max,set.size());
             }
-            map.put(s.charAt(i),i);
-            max=Math.max(max,i-j+1);
-            
+            else{
+                set.remove(s.charAt(i++));// we are removing all characters i.e we have unique when there is a repetitive characters
+            }
+                
         }
         return max;
     }
