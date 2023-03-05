@@ -15,3 +15,5 @@ class Solution {
         return max;
     }
 }
+//Intially you can think that we find unique using hashset
+// if you take ex: "pwwkew"  we are removing the elements if see any repetitive elements then finding max size of set
