@@ -60,9 +60,20 @@ class Is_Node__Present_In_BST {
 class BST {
     // Function to search a node in BST.
     boolean search(Node root, int x) {
-       if(root==null) return false;
-       if(root.data==x) return true;
-       else if(x<root.data) return search(root.left,x);
-       else return search(root.right,x);
+        ArrayList<Integer> list= new ArrayList<>();
+       inorder(root, list);
+       for(int i=0;i<list.size();i++){
+           if(x==list.get(i)){
+               return true;
+           }
+       }
+       return false;
+    }
+    void inorder(Node root,ArrayList<Integer> list){
+        if(root!=null) {
+            inorder(root.left,list);
+            list.add(root.data);
+            inorder(root.right,list);
+        }
     }
 }
