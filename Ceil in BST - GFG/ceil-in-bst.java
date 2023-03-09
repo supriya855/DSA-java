@@ -107,22 +107,21 @@ class GfG {
 
 class Tree {
     // Function to return the ceil of given number in BST.
-    int ceil=-1;
     int findCeil(Node root, int key) {
-      while(root!=null){// until the root not equals null we are traversing the tree
-        if(root.data==key){
-            ceil=root.data;
-            return ceil;
+        int ceil=-1;
+        while(root!=null){
+            if(root.data==key){
+                ceil=key;
+                return ceil;
+            }
+            else if(key<root.data){
+                ceil=root.data;
+                root=root.left;
+            }
+            else{
+                root=root.right;
+            }
         }
-         else if(key<root.data){
-            ceil=root.data;
-             root=root.left;
-        }
-        else if(key>root.data){
-            root=root.right;
-        }
-      
+        return ceil;
     }
-    return ceil;
-}
 }
