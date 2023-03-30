@@ -40,7 +40,7 @@ class Solution {
         ArrayList<Integer> ans = new ArrayList<>();
         boolean[] visited = new boolean[V];
         Queue<Integer> q= new LinkedList<>();
-        q.add(0);
+        q.add(0);// As the graph starting node is 0
         visited[0]=true;
         while(!q.isEmpty()){
             int val=q.poll();
@@ -56,3 +56,5 @@ class Solution {
         
     }
 }
+// TC: O(N)+O(2E) -> for queue+ inside for loop traverse adj list
+// SC: O(3N)->O(N)
