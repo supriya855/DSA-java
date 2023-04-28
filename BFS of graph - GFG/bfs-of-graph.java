@@ -38,23 +38,20 @@ class Solution {
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
         ArrayList<Integer> ans = new ArrayList<>();
-        boolean[] visited = new boolean[V];
-        Queue<Integer> q= new LinkedList<>();
-        q.add(0);// As the graph starting node is 0
+        Queue<Integer> q = new LinkedList<>();
+        boolean[]  visited= new boolean[V];
+        q.add(0);
         visited[0]=true;
         while(!q.isEmpty()){
-            int val=q.poll();
-            ans.add(val);
-            for(int i:adj.get(val)){
+            int nodeVal=q.poll();
+            ans.add(nodeVal);
+            for(int i: adj.get(nodeVal)){
                 if(visited[i]==false){
-                    visited[i]=true;
-                    q.add(i);
+                   visited[i]=true;
+                   q.add(i);
                 }
             }
         }
         return ans;
-        
     }
 }
-// TC: O(N)+O(2E) -> for queue+ inside for loop traverse adj list
-// SC: O(3N)->O(N)
