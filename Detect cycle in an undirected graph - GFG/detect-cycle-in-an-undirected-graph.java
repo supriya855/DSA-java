@@ -33,44 +33,29 @@ class GFG {
 
 
 class Solution {
-    public boolean isDetect(int src,int V, ArrayList<ArrayList<Integer>> adj,boolean[] visited ){
-        visited[src]=true;
-        Queue<Pair> q= new LinkedList<>();
-        q.add(new Pair(src,-1));
-        while(!q.isEmpty()){
-            int node=q.peek().row;
-            int parent =q.peek().col;
-            q.remove();
-            for(int adjNode:adj.get(node)){
-                if(!visited[adjNode]){
-                    q.add(new Pair(adjNode,node));
-                    visited[adjNode]=true;
-                }
-                else if(parent!=adjNode){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        boolean[] vis= new boolean[V];
+        boolean[] vis = new boolean[V];
         for(int i=0;i<V;i++){
-            if(!vis[i]){
-                if(isDetect(i,V,adj,vis)==true)
-                return true;
+            if(vis[i]==false){
+            if(dfs(i,-1,adj,vis)==true)
+            return true;
             }
         }
-        return false;
+            return false;
+        }
+        public boolean dfs(int node,int parent,ArrayList<ArrayList<Integer>> adj,boolean[] vis){
+            vis[node]=true;
+            for(int i:adj.get(node)){
+                if(vis[i]==false){
+                   if(dfs(i,node,adj,vis)==true) {
+                          return true;
+                   }
+                }
+                    else if(i!=parent) return true;
+                
+            }
+            return false;
+        }
     }
-}
-class Pair{
-    int row;
-    int col;
-    Pair(int row,int col){
-        this.row=row;
-        this.col=col;
-    }
-}
