@@ -45,27 +45,21 @@ class Solution
         }
         for(int i=0;i<V;i++){
             if(color[i]==-1){
-                if(bfs(i,V,color,adj)==false) return false;
+                if(dfs(i,0,color,adj)==false) return false;
             }
         }
         return true;
     }
-    public boolean bfs(int i,int V,int[] color,ArrayList<ArrayList<Integer>>adj){
-        color[i]=0;
-        Queue<Integer> q = new LinkedList<>();
-        q.add(i);
-        while(!q.isEmpty()){
-            int val=q.remove();
-            for(int adjNode:adj.get(val)){
+    public boolean dfs(int i,int fill,int[] color,ArrayList<ArrayList<Integer>>adj){
+        color[i]=fill;
+            for(int adjNode:adj.get(i)){
                 if(color[adjNode]==-1){
-                     q.add(adjNode);
-                    color[adjNode]=1-color[val];
+                     if(dfs(adjNode,1-fill,color,adj)==false) return false;
                 }
-                else if(color[adjNode]==color[val]) return false;
+                else if(color[adjNode]==fill) return false; // if adjnode and curr node has same values
                 
             }
             
-        }
         return true;
     }
 }
